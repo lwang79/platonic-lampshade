@@ -8,28 +8,27 @@
     function getComputerChoice() {
       let x = Math.random();
       if (x < 0.33) {
-        // let computerChoice = "Scissors";
         return "scissors";
       } else if (x >= 0.33 && x < 0.66) {
-        // let computerChoice = "Rock";
         return "rock";
       } else {
-        // let computerChoice = "Paper";
         return "paper";
       }
     }
 
     function getHumanChoice() {
       let y = prompt("Scissors, paper, rock?");
-      if (y.toLowerCase() === "scissors") {
+      y = y.toLowerCase();
+
+      if (y === "scissors") {
         return "scissors";
-      } else if (y.toLowerCase() === "rock") {
+      } else if (y === "rock") {
         return "rock";
-      } else if (y.toLowerCase() === "paper") {
+      } else if (y === "paper") {
         return "paper";
       } else {
         alert("Valid input pls, try again");
-        let y = prompt("Scissors, paper, rock?");
+        getHumanChoice();
       }
     }
 
@@ -37,25 +36,17 @@
       if (humanChoice === 'rock' && computerChoice === 'scissors') {
         humanScore++;
         alert(`You win! Yay! Your score is ${humanScore}. Your opponent's score is ${computerScore}.`);
-        console.log(humanChoice);
-        console.log(computerChoice);
       } else if (humanChoice === 'paper' && computerChoice === 'rock') {
         humanScore++
         alert(`You win! Yay! Your score is ${humanScore}. Your opponent's score is ${computerScore}.`);
-        console.log(humanChoice);
-        console.log(computerChoice);
       } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
         humanScore++;
         alert(`You win! Yay! Your score is ${humanScore}. Your opponent's score is ${computerScore}.`);
-        console.log(humanChoice);
-        console.log(computerChoice);
       } else if (humanChoice = computerChoice) {
         alert(`Tie! Try again. Your score is ${humanScore}. Your opponent's score is ${computerScore}. `);
       } else {
         computerScore++;
         alert(`booooooo, try again. Your score is ${humanScore}. Your opponent's score is ${computerScore}.`);
-        console.log(humanChoice);
-        console.log(computerChoice);
       }
     }
 
