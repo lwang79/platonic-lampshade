@@ -1,5 +1,5 @@
 export interface Match {
-  name: string;
+  id: string;
   date: string;
   playerOne: string;
   playerTwo: string;
@@ -7,7 +7,7 @@ export interface Match {
   scoreTwo: number;
 }
 
-export type Winner = 'playerOne' | 'playerTwo'
+export type ScoringPlayer = 'p1' | 'p2'
 
 export interface Players {
   playerOne: string;
