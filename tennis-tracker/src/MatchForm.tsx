@@ -47,7 +47,7 @@ export default function MatchForm({ submitForm }: MatchFormProps) {
     if (Object.values(fields).some(value => value === '')) return;
     // create new match if fields are populated
     const newMatch: Match = {
-      id: Date.now().toString(),
+      id: Date.now(),
       date: fields.date,
       playerOne: fields.playerOne,
       playerTwo: fields.playerTwo,
@@ -56,24 +56,16 @@ export default function MatchForm({ submitForm }: MatchFormProps) {
     }
     submitForm(newMatch);
     setFields(form);
-
-
   }
 
   return (
-    <div>
-    <input type="text" name="date" value={fields.date} onChange={handleChange}/>
-    <input type="text" name="playerOne" value={fields.playerOne} onChange={handleChange}/>
-    <input type="text" name="playerTwo" value={fields.playerTwo} onChange={handleChange}/>
-    <input type="text" name="scoreOne" value={fields.scoreOne} onChange={handleChange}/>
-    <input type="text" name="scoreTwo" value={fields.scoreTwo} onChange={handleChange}/>
     <form onSubmit={handleSubmit}>
-
+      <input type="text" name="date" value={fields.date} onChange={handleChange}/>
+      <input type="text" name="playerOne" value={fields.playerOne} onChange={handleChange}/>
+      <input type="text" name="playerTwo" value={fields.playerTwo} onChange={handleChange}/>
+      <input type="text" name="scoreOne" value={fields.scoreOne} onChange={handleChange}/>
+      <input type="text" name="scoreTwo" value={fields.scoreTwo} onChange={handleChange}/>
+      <button type="submit">Add match</button>
     </form>
-    </div>
   )
-
-
-
-
 }
