@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Match } from './types'
+import { FormInput } from "./Form";
 
 // define props - this is what the component receives from the app
 interface MatchFormProps {
@@ -32,7 +33,7 @@ export default function MatchForm({ submitForm }: MatchFormProps) {
   // state that needs to be tracked
   const [fields, setFields] = useState<FormFields>(form)
 
-  // onchange handler that fires on every keystroke
+  // onchange handler that fires on every keystroke (required for entry into form)
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFields(prev => ({
       ...prev,
@@ -60,11 +61,11 @@ export default function MatchForm({ submitForm }: MatchFormProps) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" name="date" value={fields.date} onChange={handleChange}/>
-      <input type="text" name="playerOne" value={fields.playerOne} onChange={handleChange}/>
-      <input type="text" name="playerTwo" value={fields.playerTwo} onChange={handleChange}/>
-      <input type="text" name="scoreOne" value={fields.scoreOne} onChange={handleChange}/>
-      <input type="text" name="scoreTwo" value={fields.scoreTwo} onChange={handleChange}/>
+      <FormInput type="date" name="date" value={fields.date} elementId={fields.date} label="Date: " required onChange={handleChange}/>
+      <FormInput type="text" name="playerOne" value={fields.playerOne} elementId={fields.playerOne} label="Player one: " required onChange={handleChange}/>
+      <FormInput type="text" name="playerTwo" value={fields.playerTwo} elementId={fields.playerTwo} label="Player two: " required onChange={handleChange}/>
+      <FormInput type="number" name="scoreOne" value={fields.scoreOne} elementId={fields.scoreOne} label="Score one: " required onChange={handleChange}/>
+      <FormInput type="number" name="scoreTwo" value={fields.scoreTwo} elementId={fields.scoreTwo} label="Score two: " required onChange={handleChange}/>
       <button type="submit">Add match</button>
     </form>
   )

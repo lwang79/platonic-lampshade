@@ -1,4 +1,5 @@
 import type { Match } from "./types";
+import styles from './App.module.css'
 
 interface MatchTableProps {
   matches: Match[]
@@ -8,7 +9,7 @@ export default function MatchTable({ matches }: MatchTableProps) {
   const headers = ['Date', 'Player one', 'Score one', 'Player two', 'Score two'];
 
   return (
-    <table>
+    <table className={styles.table}>
       <thead>
         <tr>
           {headers.map(header => <th key={header}>{header}</th>)}
