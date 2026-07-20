@@ -23,7 +23,7 @@ export function formatScore(points: PointScore): string {
 
 // function for deteremining game
 export function isGameOver(points: PointScore): ScoringPlayer | null {
-  if (points.p1 >= 4 && (points.p1 - points.p2) == 2) return 'p1';
-  if (points.p2 >= 4 && (points.p2 - points.p1) == 2) return 'p2';
+  if (points.p1 >= 4 && (points.p1 - points.p2) >= 2) return 'p1';
+  if (points.p2 >= 4 && (points.p2 - points.p1) >= 2) return 'p2';
   return null;
 }
