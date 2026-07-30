@@ -1,5 +1,5 @@
-import type { Match } from "./types";
-import styles from './App.module.css'
+import type { Match } from "../types";
+import styles from '../App.module.css'
 
 interface MatchTableProps {
   matches: Match[]

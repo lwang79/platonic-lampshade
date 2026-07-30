@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Match } from './types'
+import type { Match } from '../types'
 import { FormInput } from "./Form";
 
 // define props - this is what the component receives from the app

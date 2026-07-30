@@ -1,23 +1,15 @@
-import { useState } from 'react'
-import type { Match } from './types'
-import MatchForm from './MatchForm'
-import MatchTable from './MatchTable'
-import styles from './App.module.css'
+import { Routes, Route } from "react-router-dom"
+import Homepage from "./pages/HomePage"
+import AddMatchPage from "./pages/AddMatchPage"
+import TrackMatchPage from "./pages/TrackMatchPage"
+
 
 export default function App() {
-  const [matches, setMatches] = useState<Match[]>([])
-
-  function handleAdd(match: Match) {
-    setMatches(prev => [...prev, match])
-  }
-
   return (
-    <div className={styles.page}>
-      <MatchForm submitForm={handleAdd} />
-      <div className={styles.container}>
-        <MatchTable matches={matches} />
-      </div>
-      
-    </div>
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+      <Route path="/add" element={<AddMatchPage />} />
+      <Route path="/track" element={<TrackMatchPage />} />
+      </Routes>
   )
 }

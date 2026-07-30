@@ -1,0 +1,74 @@
+import type { Players, PointScore } from "../types";
+import { useState } from "react";
+import { isGameOver } from "../utils/tennisScore";
+
+// Goal of scoreboard component: 
+// xx be able to display both player names 
+// xx and player scores
+// xx add button to increase player scores
+// ** on win: display winning player name and option to start new game
+
+// next week - design the scoreboard and how scoring will be displayed
+
+// interface ScoreboardProps { 
+//   playerOne: string
+//   playerTwo: string
+//   onGameOver: (winner: Players) => void;
+// }
+
+const emptyPoints: PointScore = {
+  p1: 0,
+  p2: 0,
+}
+
+export default function Scoreboard() {
+  // state goes here
+  const [playerOne, setPlayerOne] = useState<string | undefined>(undefined)
+  const [playerTwo, setPlayerTwo] = useState<string | undefined>(undefined)
+
+  const [points, setPoints] = useState<PointScore>(emptyPoints)
+  const [gameWinner, setGameWinner] = useState<Players | null>(null)
+
+  // add point to the right player
+
+  // function to increase the score of a certain player
+  // get current score of player and increase it
+  // also want to check whether that player has won post increment
+  function addPoints(player: 'p1' | 'p2') {
+    const nextPoints = {
+    ...points,
+    [player]: points[player] + 1
+    }
+
+    if (isGameOver(nextPoints)) {
+      console.log(`Game won by ${player}`)
+    } else {
+      setPoints(nextPoints)
+    }
+
+  }
+
+  // check if game is over
+  // const winner = isGameOver(nextPoints)
+
+  // if (winner) {
+
+  // }
+
+  return (
+    <div>
+      <div>
+        <input type="text" value={playerOne ?? ""} onChange={(e) => setPlayerOne(e.target.value)} placeholder="Player One"/>
+        <p>{points.p1}</p>
+        <button onClick={ () => addPoints('p1')}>Add for player 1</button>
+      </div>
+      <div>
+        <input type="text" value={playerTwo ?? ""} onChange={(e) => setPlayerTwo(e.target.value)} placeholder="Player Two"/>
+        <p>{points.p2}</p>
+        <button onClick={ () => addPoints('p2')}>Add for player 2 </button>
+      </div>
+      {/* <p>Player two:</p>  */}
+    </div>
+  )
+
+}
