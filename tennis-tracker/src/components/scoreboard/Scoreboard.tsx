@@ -1,6 +1,8 @@
-import type { Players, PointScore } from "../types";
+import type { Players, PointScore } from "../../types";
 import { useState } from "react";
-import { isGameOver } from "../utils/tennisScore";
+import { isGameOver } from "../../utils/tennisScore";
+import { Button } from "../Button";
+import styles from './Scoreboard.module.css'
 
 // Goal of scoreboard component: 
 // xx be able to display both player names 
@@ -48,6 +50,12 @@ export default function Scoreboard() {
 
   }
 
+  function reset() {
+    const nextPoints = emptyPoints
+
+    setPoints(nextPoints)
+  }
+
   // check if game is over
   // const winner = isGameOver(nextPoints)
 
@@ -56,18 +64,21 @@ export default function Scoreboard() {
   // }
 
   return (
-    <div>
+    <div className={styles.parent}>
       <div>
         <input type="text" value={playerOne ?? ""} onChange={(e) => setPlayerOne(e.target.value)} placeholder="Player One"/>
         <p>{points.p1}</p>
-        <button onClick={ () => addPoints('p1')}>Add for player 1</button>
+        <Button onClick={ () => addPoints('p1')}>Add for player 1</Button>
+      </div>
+      <div>
+        <p>Placeholder for score/winner</p>
+        <Button type="reset" onClick={ () => reset()}>Reset</Button>
       </div>
       <div>
         <input type="text" value={playerTwo ?? ""} onChange={(e) => setPlayerTwo(e.target.value)} placeholder="Player Two"/>
         <p>{points.p2}</p>
-        <button onClick={ () => addPoints('p2')}>Add for player 2 </button>
+        <Button onClick={ () => addPoints('p2')}>Add for player 2 </Button>
       </div>
-      {/* <p>Player two:</p>  */}
     </div>
   )
 

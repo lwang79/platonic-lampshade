@@ -1,14 +1,13 @@
 export type ButtonProps = {
-  type: 'button' | 'submit' | 'reset'
-  label: string
-  elementId: string
+  type?: 'button' | 'submit' | 'reset'
+  children: string
   onClick?: () => void
 }
 
-export const Button = ({ type, label, elementId, onClick }: ButtonProps) => {
+export const Button = ({ type="button", onClick, children }: ButtonProps) => {
   return (
-    <div id ={elementId}>
-      <button type={type} onClick={onClick}>{label}</button>
+    <div>
+      <button type={type} onClick={onClick}>{children}</button>
     </div>
   )
 }

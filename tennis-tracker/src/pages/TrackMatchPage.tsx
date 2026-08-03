@@ -1,4 +1,4 @@
-import Scoreboard from "../components/Scoreboard"
+import Scoreboard from "../components/scoreboard/Scoreboard"
 
 export default function TrackMatchPage() {
 
