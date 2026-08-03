@@ -1,24 +1,48 @@
-import type { PointScore, ScoringPlayer } from "../types"
+import type { PointScore, ScoringPlayer, DisplayScore } from "../types"
 
 // takes raw score and converts to score string to display
-export function formatScore(points: PointScore): string {
+export function formatScore(points: PointScore): DisplayScore {
   const displayPoints = [0, 15, 30, 40];
 
   if (points.p1 >= 3 && points.p2 >= 3) {
     if (points.p1 === points.p2) {
-      return 'Deuce'
+      return {
+        playerOne: '',
+        playerTwo: '',
+        status: "Deuce"
+      }
     } else if (points.p1 > (points.p2 + 1)) {
-      return 'Game P1'
+      return {
+        playerOne: '',
+        playerTwo: '',
+        status: "Player One Wins"
+      }
     } else if (points.p2 > (points.p1 + 1)) {
-      return 'Game P2'
+      return {
+        playerOne: '',
+        playerTwo: '',
+        status: "Player Two Wins"
+      }
     } else if (points.p1 > points.p2) {
-      return 'Advantage P1'
+      return {
+        playerOne: "Adv",
+        playerTwo: '',
+        status: ''
+      }
     } else {
-      return 'Advantage P2'
+      return {
+        playerOne: '',
+        playerTwo: "Adv",
+        status: ''
+      }
     }
   }
   
-  return `${displayPoints[points.p1]}-${displayPoints[points.p2]}`;
+  return {
+    playerOne: String(displayPoints[points.p1]),
+    playerTwo: String(displayPoints[points.p2]),
+    status: ''
+  };
 }
 
 // function for deteremining game

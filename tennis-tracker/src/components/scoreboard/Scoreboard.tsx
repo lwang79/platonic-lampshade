@@ -1,6 +1,6 @@
 import type { Players, PointScore } from "../../types";
 import { useState } from "react";
-import { isGameOver } from "../../utils/tennisScore";
+import { formatScore, isGameOver } from "../../utils/tennisScore";
 import { Button } from "../Button";
 import styles from './Scoreboard.module.css'
 
@@ -27,9 +27,10 @@ export default function Scoreboard() {
   // state goes here
   const [playerOne, setPlayerOne] = useState<string | undefined>(undefined)
   const [playerTwo, setPlayerTwo] = useState<string | undefined>(undefined)
-
+  
   const [points, setPoints] = useState<PointScore>(emptyPoints)
-  const [gameWinner, setGameWinner] = useState<Players | null>(null)
+  
+  const score = formatScore(points)
 
   // add point to the right player
 
@@ -56,27 +57,22 @@ export default function Scoreboard() {
     setPoints(nextPoints)
   }
 
-  // check if game is over
-  // const winner = isGameOver(nextPoints)
 
-  // if (winner) {
-
-  // }
 
   return (
     <div className={styles.parent}>
       <div>
         <input type="text" value={playerOne ?? ""} onChange={(e) => setPlayerOne(e.target.value)} placeholder="Player One"/>
-        <p>{points.p1}</p>
+        <p>{score.playerOne}</p>
         <Button onClick={ () => addPoints('p1')}>Add for player 1</Button>
       </div>
       <div>
-        <p>Placeholder for score/winner</p>
+        <p>{score.status}</p>
         <Button type="reset" onClick={ () => reset()}>Reset</Button>
       </div>
       <div>
         <input type="text" value={playerTwo ?? ""} onChange={(e) => setPlayerTwo(e.target.value)} placeholder="Player Two"/>
-        <p>{points.p2}</p>
+        <p>{score.playerTwo}</p>
         <Button onClick={ () => addPoints('p2')}>Add for player 2 </Button>
       </div>
     </div>

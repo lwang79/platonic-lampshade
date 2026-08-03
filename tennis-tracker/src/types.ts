@@ -18,3 +18,9 @@ export interface PointScore {
   p1: number;
   p2: number;
 }
+
+export type DisplayScore = {
+  playerOne: string;
+  playerTwo: string;
+  status: string;
+}
