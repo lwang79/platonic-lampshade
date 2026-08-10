@@ -1,4 +1,4 @@
-import type { PointScore, ScoringPlayer, DisplayScore } from "../types"
+import type { PointScore, DisplayScore } from "../types"
 
 // takes raw score and converts to score string to display
 export function formatScore(points: PointScore): DisplayScore {
@@ -46,8 +46,16 @@ export function formatScore(points: PointScore): DisplayScore {
 }
 
 // function for deteremining game
-export function isGameOver(points: PointScore): ScoringPlayer | null {
-  if (points.p1 >= 4 && (points.p1 - points.p2) >= 2) return 'p1';
-  if (points.p2 >= 4 && (points.p2 - points.p1) >= 2) return 'p2';
+export function isGameOver(points: PointScore): DisplayScore | null {
+  if (points.p1 >= 4 && (points.p1 - points.p2) >= 2) return {
+        playerOne: '',
+        playerTwo: '',
+        status: "Player One Wins"
+      }
+  if (points.p2 >= 4 && (points.p2 - points.p1) >= 2) return {
+        playerOne: '',
+        playerTwo: '',
+        status: "Player Two Wins"
+      };
   return null;
 }

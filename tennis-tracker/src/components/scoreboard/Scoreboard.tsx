@@ -30,7 +30,7 @@ export default function Scoreboard() {
   
   const [points, setPoints] = useState<PointScore>(emptyPoints)
   
-  const score = formatScore(points)
+  let score = formatScore(points)
 
   // add point to the right player
 
@@ -44,7 +44,7 @@ export default function Scoreboard() {
     }
 
     if (isGameOver(nextPoints)) {
-      console.log(`Game won by ${player}`)
+      let score = isGameOver(nextPoints)
     } else {
       setPoints(nextPoints)
     }
@@ -64,11 +64,11 @@ export default function Scoreboard() {
       <div>
         <input type="text" value={playerOne ?? ""} onChange={(e) => setPlayerOne(e.target.value)} placeholder="Player One"/>
         <p>{score.playerOne}</p>
-        <Button onClick={ () => addPoints('p1')}>Add for player 1</Button>
+        <Button onClick={ () => addPoints('p1') }>Add for player 1</Button>
       </div>
       <div>
         <p>{score.status}</p>
-        <Button type="reset" onClick={ () => reset()}>Reset</Button>
+        <Button type="reset" onClick={ () => reset() }>Reset</Button>
       </div>
       <div>
         <input type="text" value={playerTwo ?? ""} onChange={(e) => setPlayerTwo(e.target.value)} placeholder="Player Two"/>
