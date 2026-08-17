@@ -27,6 +27,7 @@ export default function Scoreboard() {
   // state goes here
   const [playerOne, setPlayerOne] = useState<string | undefined>(undefined)
   const [playerTwo, setPlayerTwo] = useState<string | undefined>(undefined)
+  const [gameWinner, setGameWinner] = useState<string | undefined>(undefined)
   
   const [points, setPoints] = useState<PointScore>(emptyPoints)
   
@@ -43,21 +44,24 @@ export default function Scoreboard() {
     [player]: points[player] + 1
     }
 
-    if (isGameOver(nextPoints)) {
-      let score = isGameOver(nextPoints)
-    } else {
-      setPoints(nextPoints)
-    }
+    const winner = isGameOver(nextPoints)
+
+    if (winner) {
+      setGameWinner(winner)
+    } 
+
+    setPoints(nextPoints)
 
   }
 
   function reset() {
     const nextPoints = emptyPoints
+    let winner;
+    
 
     setPoints(nextPoints)
+    setGameWinner(winner)
   }
-
-
 
   return (
     <div className={styles.parent}>
@@ -67,13 +71,13 @@ export default function Scoreboard() {
         <Button onClick={ () => addPoints('p1') }>Add for player 1</Button>
       </div>
       <div>
-        <p>{score.status}</p>
+        <p>{gameWinner ? gameWinner : score.status}</p>
         <Button type="reset" onClick={ () => reset() }>Reset</Button>
       </div>
       <div>
         <input type="text" value={playerTwo ?? ""} onChange={(e) => setPlayerTwo(e.target.value)} placeholder="Player Two"/>
         <p>{score.playerTwo}</p>
-        <Button onClick={ () => addPoints('p2')}>Add for player 2 </Button>
+        <Button onClick={ () => addPoints('p2') }>Add for player 2</Button>
       </div>
     </div>
   )
